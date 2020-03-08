@@ -40,7 +40,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="330dp"
-        android:text="Log in" />
+        android:text="Sign up" />
 
     <TextView
         android:id="@+id/etLogin"
@@ -49,5 +49,5 @@
         android:layout_below="@+id/btnLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:text="Not registered yet? Sign up here" />
+        android:text="Already has an account? Login here" />
 </RelativeLayout>
