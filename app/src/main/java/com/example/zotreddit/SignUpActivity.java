@@ -28,8 +28,6 @@ public class SignUpActivity extends AppCompatActivity {
     private Button btnSignUp;
     private TextView etLogin;
 
-    User user;
-
     FirebaseAuth mFirebaseAuth;
 
     @Override
@@ -90,8 +88,8 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(SignUpActivity.this, "Signed up successfully", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(SignUpActivity.this, MainActivity.class);
+                                Toast.makeText(SignUpActivity.this, "Signed up successfully, please login now", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(SignUpActivity.this, LoginActivity.class);
                                 startActivity(i);
                             }
                         }

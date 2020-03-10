@@ -21,17 +21,19 @@
         android:id="@+id/btnReply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="reply"
-        tools:layout_editor_absoluteX="298dp"
-        tools:layout_editor_absoluteY="166dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="164dp" />
 
     <Button
         android:id="@+id/btnUpvote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Upvote"
-        tools:layout_editor_absoluteX="185dp"
-        tools:layout_editor_absoluteY="167dp" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMessage"
+        tools:layout_editor_absoluteX="185dp" />
 
     <EditText
         android:id="@+id/tvUpvotes"
@@ -44,13 +46,14 @@
         tools:layout_editor_absoluteY="9dp" />
 
     <EditText
-        android:id="@+id/tvPost"
+        android:id="@+id/tvMessage"
         android:layout_width="384dp"
         android:layout_height="101dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="55dp" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUsername" />
 </androidx.constraintlayout.widget.ConstraintLayout>

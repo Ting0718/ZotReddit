@@ -23,14 +23,13 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "LogInActivity";
+    public static final String username = "username";
 
     private TextView etEmail;
     private TextView etPassword;
     private Button btnLogin;
     private TextView etSignUp;
     private TextView etMessage;
-
-    private User user;
 
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -40,14 +39,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         etSignUp = findViewById(R.id.etSignUp);
         etMessage = findViewById(R.id.etMessage);
-
-        user = new User();
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -104,8 +100,10 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else
                             {
+                                String email = etEmail.getText().toString();
                                 Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                                i.putExtra(username, email);
                                 startActivity(i);
                             }
                         }
