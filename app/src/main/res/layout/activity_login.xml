@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/etName"
+    android:id="@+id/Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -17,7 +17,7 @@
         android:layout_marginTop="173dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
-        android:hint="name"
+        android:hint="email"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="104dp"
         tools:layout_editor_absoluteY="76dp" />
@@ -33,21 +33,31 @@
         android:hint="password"
         android:inputType="textPersonName" />
 
+    <TextView
+        android:id="@+id/etMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/etEmail"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="123dp"
+        android:layout_marginBottom="31dp" />
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="330dp"
-        android:text="Log in" />
+        android:layout_marginTop="318dp"
+        android:text="Login" />
 
     <TextView
-        android:id="@+id/etLogin"
+        android:id="@+id/etSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:text="Not registered yet? Sign up here" />
+        android:text="Has not registered? Sign up here" />
 </RelativeLayout>
