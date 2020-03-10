@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".MessageActivity">
 
     <TextView
@@ -14,43 +14,30 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="username"
+        android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnReply"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="reply"
-        tools:layout_editor_absoluteX="298dp"
-        tools:layout_editor_absoluteY="166dp" />
-
-    <Button
-        android:id="@+id/btnUpvote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upvote"
-        tools:layout_editor_absoluteX="185dp"
-        tools:layout_editor_absoluteY="167dp" />
-
-    <EditText
-        android:id="@+id/tvUpvotes"
-        android:layout_width="74dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="9dp" />
-
-    <EditText
+    <TextView
         android:id="@+id/tvPost"
-        android:layout_width="384dp"
-        android:layout_height="101dp"
+        android:layout_width="387dp"
+        android:layout_height="74dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="55dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginTop="61dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvUpvotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="13dp"
+        android:text="0 upvotes"
+        android:textSize="20sp" />
+
+</RelativeLayout>
