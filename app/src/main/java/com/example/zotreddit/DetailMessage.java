@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import adapters.ReplyAdapter;
@@ -34,6 +38,7 @@ public class DetailMessage extends AppCompatActivity {
     Button btnUpvote;
     TextView tvReply;
     TextView tvReplier;
+    ImageButton ibBack;
 
     String message_key;
     List<Reply> replies;
@@ -57,6 +62,7 @@ public class DetailMessage extends AppCompatActivity {
         btnUpvote = findViewById(R.id.btnUpvote);
         tvReply = findViewById(R.id.tvReply);
         tvReplier = findViewById(R.id.tvReplier);
+        ibBack = findViewById(R.id.ibBack);
 
         String currentUser = getIntent().getStringExtra("currentUser");
         Message message = Parcels.unwrap(getIntent().getParcelableExtra("message"));
@@ -111,6 +117,16 @@ public class DetailMessage extends AppCompatActivity {
                 btnUpvote.setEnabled(false);
             }
         });
+
+
+        ibBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DetailMessage.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
 
@@ -126,6 +142,8 @@ public class DetailMessage extends AppCompatActivity {
                 for (DataSnapshot replyDataSnapshot: dataSnapshot.getChildren()) {
                     Reply reply = replyDataSnapshot.getValue(Reply.class);
                     replies.add(reply);
+                    Collections.sort(replies);
+                    Collections.reverse(replies);
                 }
                 ReplyAdapter replyAdapter = new ReplyAdapter(DetailMessage.this, replies);
                 rvReply.setAdapter(replyAdapter);

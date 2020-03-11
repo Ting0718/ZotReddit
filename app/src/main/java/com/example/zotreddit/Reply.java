@@ -3,7 +3,7 @@ package com.example.zotreddit;
 import org.parceler.Parcel;
 
 @Parcel
-public class Reply {
+public class Reply implements Comparable<Reply>{
 
     private String post;
     private String poster;
@@ -51,6 +51,11 @@ public class Reply {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    @Override
+    public int compareTo(Reply reply) {
+        return this.upvotes - reply.upvotes ;
     }
 }
 

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvPost;
     private String key;
     MessageAdapter messageAdapter;
+    ImageButton ibBack;
 
     List<Message> messages;
 
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         btnPost = findViewById(R.id.btnPost);
         tvPost = findViewById(R.id.tvPost);
+        ibBack = findViewById(R.id.ibBack);
 
         // message adapter
         messageAdapter = new MessageAdapter(this, messages, tvUsername.getText().toString());
@@ -96,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
             tvUsername.setText(username);
         }
 
+        ibBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+            }
+        });
 
 
         btnPost.setOnClickListener(new View.OnClickListener() {

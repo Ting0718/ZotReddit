@@ -77,6 +77,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ViewHolder> 
                     int newUpvotes = Integer.parseInt(tvUpvotes.getText().toString()) + 1;
                     tvUpvotes.setText(String.valueOf(newUpvotes));
                     databaseReference_message.child(reply.getKey()).child("upvotes").setValue(newUpvotes);
+                    btnUpvote.setEnabled(false);
                 }
             });
         }
