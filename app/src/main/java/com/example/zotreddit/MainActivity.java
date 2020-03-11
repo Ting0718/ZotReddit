@@ -19,9 +19,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import adapters.MessageAdapter;
@@ -37,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     List<Message> messages;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("message");
-
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback
             = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -68,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         final RecyclerView rvMessages = findViewById(R.id.rvMessage);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rvMessages);
         messages = new ArrayList<>();
+
 
         tvUsername = findViewById(R.id.tvUsername);
         btnPost = findViewById(R.id.btnPost);
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             String username = extras.getString("user");
             tvUsername.setText(username);
         }
+
 
 
         btnPost.setOnClickListener(new View.OnClickListener() {
@@ -130,13 +132,15 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         final RecyclerView rvMessages = findViewById(R.id.rvMessage);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        ValueEventListener valueEventListener = databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 messages.clear();
-                for (DataSnapshot messageDataSnapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot messageDataSnapshot : dataSnapshot.getChildren()) {
                     Message message = messageDataSnapshot.getValue(Message.class);
                     messages.add(message);
+                    Collections.sort(messages);
+                    Collections.reverse(messages);
                 }
                 MessageAdapter messageAdapter = new MessageAdapter(MainActivity.this, messages, tvUsername.getText().toString());
                 rvMessages.setAdapter(messageAdapter);

@@ -5,7 +5,7 @@ import org.parceler.Parcel;
 import java.util.ArrayList;
 
 @Parcel
-public class Message {
+public class Message implements Comparable<Message> {
 
     private String post;
     private String poster;
@@ -47,7 +47,8 @@ public class Message {
         return upvotes;
     }
 
-    public void addReplies(Reply reply) {
-        this.replies.add(reply);
+    @Override
+    public int compareTo(Message message) {
+        return this.upvotes - message.getUpvotes();
     }
 }
