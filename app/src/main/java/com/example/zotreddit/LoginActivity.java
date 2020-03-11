@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         tvRule = findViewById(R.id.tvRules);
 
         tvRule.setText("For each post in recycler view on the home page \n 1. Swipe left or right to delete \n " +
-                "2. Tap on the post to upvote and see replies \n" + "3. Please enter your name");
+                "2. Tap on the post to upvote and see replies in another recycler view \n" + "3. Please enter your name");
 
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
