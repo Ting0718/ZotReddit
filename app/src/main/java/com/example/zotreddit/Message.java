@@ -2,6 +2,8 @@ package com.example.zotreddit;
 
 import org.parceler.Parcel;
 
+import java.util.ArrayList;
+
 @Parcel
 public class Message {
 
@@ -9,17 +11,29 @@ public class Message {
     String poster;
     int upvotes = 0;
     String key;
+    ArrayList<Reply> replies;
 
-    public Message(String post, String poster, int upvotes, String key) {
+    public Message()
+    {
+
+    }
+
+    public Message(String post, String poster, int upvotes, ArrayList<Reply> replies, String key) {
         this.post = post;
         this.poster = poster;
         this.upvotes = upvotes;
+        this.replies = replies;
         this.key = key;
     }
 
     public String getKey() {
         return key;
     }
+
+    public ArrayList<Reply> getReplies() {
+        return replies;
+    }
+
 
     public String getPost() {
         return post;
@@ -33,8 +47,7 @@ public class Message {
         return upvotes;
     }
 
-    public Message()
-    {
-
+    public void addReplies(Reply reply) {
+        this.replies.add(reply);
     }
 }

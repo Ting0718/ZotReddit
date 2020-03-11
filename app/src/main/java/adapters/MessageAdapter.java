@@ -23,12 +23,14 @@ import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
+    private String currentUser;
     Context context;
     List<Message> messages;
 
-    public MessageAdapter(Context context, List<Message> messages) {
+    public MessageAdapter(Context context, List<Message> messages, String currentUser) {
         this.context = context;
         this.messages = messages;
+        this.currentUser = currentUser;
     }
 
     @NonNull
@@ -75,6 +77,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 public void onClick(View v) {
                     Intent i = new Intent(context, DetailMessage.class);
                     i.putExtra("message", Parcels.wrap(message));
+                    i.putExtra("currentUser", currentUser);
                     context.startActivity(i);
                 }
             });

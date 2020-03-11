@@ -1,5 +1,8 @@
 package com.example.zotreddit;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Reply {
 
     String post;
@@ -7,11 +10,10 @@ public class Reply {
     int upvotes;
     String key;
 
-    public Reply(String poster, String post, int upvotes, String key) {
+    public Reply(String poster, String post, int upvotes) {
         this.poster = poster;
         this.post = post;
         this.upvotes = upvotes;
-        this.key = key;
     }
 
 
@@ -20,9 +22,6 @@ public class Reply {
 
     }
 
-    public String getKey() {
-        return key;
-    }
 
     public String getPoster() {
         return poster;

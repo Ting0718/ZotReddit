@@ -59,7 +59,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ViewHolder> 
         }
 
         public void bind(Reply reply) {
-            tvUsername.setText(MainActivity.currentUser());
+            tvUsername.setText(reply.getPoster());
             tvPost.setText(reply.getPost());
             tvUpvotes.setText(String.valueOf(reply.getUpvotes()));
         }
