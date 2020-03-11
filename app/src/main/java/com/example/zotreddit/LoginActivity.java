@@ -13,6 +13,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView etUsername;
     private Button btnSignIn;
+    private TextView tvRule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,10 @@ public class LoginActivity extends AppCompatActivity {
 
         etUsername = findViewById(R.id.etUsername);
         btnSignIn = findViewById(R.id.btnSignIn);
+        tvRule = findViewById(R.id.tvRules);
+
+        tvRule.setText("For each post in recycler view on the home page \n 1. Swipe left or right to delete \n " +
+                "2. Tap on the post to upvote and see replies \n" + "3. Please enter your name");
 
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                 else
                 {
                     etUsername.setError("username cannot be empty");
+                    etUsername.requestFocus();
                 }
 
 

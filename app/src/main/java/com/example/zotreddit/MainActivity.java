@@ -102,8 +102,7 @@ public class MainActivity extends AppCompatActivity {
         ibBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(i);
+                finish();
             }
         });
 
@@ -135,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     tvPost.setError("the Post content cannot be empty");
+                    tvPost.requestFocus();
                 }
             }
         });

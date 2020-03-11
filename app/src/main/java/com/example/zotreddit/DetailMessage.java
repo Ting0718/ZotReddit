@@ -104,6 +104,7 @@ public class DetailMessage extends AppCompatActivity {
                 else
                 {
                     tvReply.setError("the Post content cannot be empty");
+                    tvReply.requestFocus();
                 }
             }
         });
@@ -122,8 +123,7 @@ public class DetailMessage extends AppCompatActivity {
         ibBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DetailMessage.this, MainActivity.class);
-                startActivity(i);
+                finish();
             }
         });
 
