@@ -7,11 +7,11 @@ import java.util.ArrayList;
 @Parcel
 public class Message {
 
-    String post;
-    String poster;
-    int upvotes = 0;
-    String key;
-    ArrayList<Reply> replies;
+    private String post;
+    private String poster;
+    private int upvotes = 0;
+    private String key;
+    private ArrayList<Reply> replies;
 
     public Message()
     {

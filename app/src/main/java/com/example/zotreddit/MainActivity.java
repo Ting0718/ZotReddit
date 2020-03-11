@@ -3,6 +3,7 @@ package com.example.zotreddit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,11 +31,36 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvUsername;
     private Button btnPost;
     private TextView tvPost;
+    private String key;
     MessageAdapter messageAdapter;
 
     List<Message> messages;
 
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("message");
+
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback
+            = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            Message message_to_remove = messages.get(viewHolder.getAdapterPosition());
+            String key_to_remove = message_to_remove.getKey();
+            messageAdapter.notifyDataSetChanged();
+            deleteMessage(key_to_remove);
+        }
+    };
+
+    private void deleteMessage(String key) {
+        DatabaseReference databaseReference_message = databaseReference.child(key);
+
+        databaseReference_message.removeValue();
+        Toast.makeText(this,"The message is deleted", Toast.LENGTH_LONG).show();
+    }
 
 
     @Override
@@ -41,16 +68,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView rvMessages = findViewById(R.id.rvMessage);
+
+        final RecyclerView rvMessages = findViewById(R.id.rvMessage);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rvMessages);
         messages = new ArrayList<>();
 
         tvUsername = findViewById(R.id.tvUsername);
         btnPost = findViewById(R.id.btnPost);
         tvPost = findViewById(R.id.tvPost);
-
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("message");
-
 
         // message adapter
         messageAdapter = new MessageAdapter(this, messages, tvUsername.getText().toString());
@@ -81,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!post.isEmpty())
                 {
-                    String key = databaseReference.push().getKey();
+                    key = databaseReference.push().getKey();
 
                     Message message = new Message(post,username,initial_upvote,replies, key);
 
@@ -97,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     @Override
@@ -122,4 +148,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
