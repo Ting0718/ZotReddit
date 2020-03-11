@@ -25,6 +25,7 @@ import adapters.MessageAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static String currentUser;
     private TextView tvUsername;
     private Button btnPost;
     private TextView tvPost;
@@ -85,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
         {
             String username = extras.getString("user");
             tvUsername.setText(username);
+            currentUser = username;
         }
+
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     String key = databaseReference.push().getKey();
 
-                    Message message = new Message(post,username,initial_upvote,key);
+                    Message message = new Message(post,username,initial_upvote, key);
 
                     messages.add(message);
 
@@ -111,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    public static String currentUser() {
+        return currentUser;
     }
 }

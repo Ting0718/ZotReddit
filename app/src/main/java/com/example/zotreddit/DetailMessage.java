@@ -51,11 +51,13 @@ public class DetailMessage extends AppCompatActivity {
         btnUpvote = findViewById(R.id.btnUpvote);
         tvReply = findViewById(R.id.tvReply);
 
-        Message message = Parcels.unwrap(getIntent().getParcelableExtra("message"));
+        final Message message = Parcels.unwrap(getIntent().getParcelableExtra("message"));
         tvUsername.setText(message.getPoster());
         tvPost.setText(message.getPost());
         String upvotes = String.valueOf(message.getUpvotes());
         tvUpvotes.setText(upvotes);
+
+        final String message_key = message.getKey();
 
         databaseReference = FirebaseDatabase.getInstance().getReference("reply");
 
@@ -71,7 +73,7 @@ public class DetailMessage extends AppCompatActivity {
                 {
                     String key = databaseReference.push().getKey();
 
-                    Reply reply = new Reply(username, post, initial_upvote);
+                    Reply reply = new Reply(username, post, initial_upvote, message_key);
 
                     replies.add(reply);
 
