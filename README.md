@@ -1,6 +1,5 @@
 # ZotReddit
-
-## An app that provides the basic functionalities of Reddit
+An app that provides the basic functionalities of Reddit
 
 ## Features
 1. User can join a thread and make a post.
