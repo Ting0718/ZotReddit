@@ -2,6 +2,7 @@ package com.example.zotreddit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -71,6 +72,9 @@ public class DetailMessage extends AppCompatActivity {
         rvReply.setAdapter(replyAdapter);
         rvReply.setLayoutManager(new LinearLayoutManager(this));
 
+        RecyclerView.ItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rvReply.addItemDecoration(divider);
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("message").child(message_key);
 
 
@@ -86,14 +90,26 @@ public class DetailMessage extends AppCompatActivity {
                     Reply reply = new Reply(replier, post, initial_upvote);
                     replies.add(reply);
                     databaseReference.child("replies").setValue(replies);
+                    tvReply.setText("");
                 }
                 else
                 {
-                    tvPost.setError("the Post content cannot be empty");
+                    tvReply.setError("the Post content cannot be empty");
                 }
             }
         });
+
+        btnUpvote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int newUpvotes = Integer.parseInt(tvUpvotes.getText().toString()) + 1;
+                tvUpvotes.setText(String.valueOf(newUpvotes));
+                databaseReference.child("upvotes").setValue(newUpvotes);
+                btnUpvote.setEnabled(false);
+            }
+        });
     }
+
 
     @Override
     protected void onStart() {

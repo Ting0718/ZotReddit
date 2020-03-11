@@ -2,6 +2,7 @@ package com.example.zotreddit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         rvMessages.setAdapter(messageAdapter);
         rvMessages.setLayoutManager(new LinearLayoutManager(this));
 
+        RecyclerView.ItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rvMessages.addItemDecoration(divider);
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null)
@@ -84,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
                     messages.add(message);
 
                     databaseReference.child(key).setValue(message);
+
+                    tvPost.setText("");
                 }
                 else
                 {

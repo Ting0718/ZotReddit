@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     intent.putExtra("user", username);
                     startActivity(intent);
+                    etUsername.setText("");
                 }
                 else
                 {
