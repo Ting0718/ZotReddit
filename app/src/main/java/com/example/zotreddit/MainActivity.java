@@ -105,12 +105,14 @@ public class MainActivity extends AppCompatActivity {
                 String post = tvPost.getText().toString();
                 int initial_upvote = 0;
                 ArrayList<Reply> replies = new ArrayList<Reply>();
-                Reply reply = new Reply("Bot","You can upvote or reply to the post", 0, "0");
+                Reply reply = new Reply("Bot","You can upvote or reply to the post", 0, "0", "000");
                 replies.add(reply);
 
                 if (!post.isEmpty())
                 {
                     key = databaseReference.push().getKey();
+
+                    reply.setParent_key(key);
 
                     Message message = new Message(post,username,initial_upvote,replies, key);
 

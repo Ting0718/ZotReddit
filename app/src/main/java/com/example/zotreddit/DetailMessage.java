@@ -88,7 +88,7 @@ public class DetailMessage extends AppCompatActivity {
 
                 if (!post.isEmpty())
                 {
-                    Reply reply = new Reply(replier, post, initial_upvote, "0");
+                    Reply reply = new Reply(replier, post, initial_upvote, "0", message_key);
                     replies.add(reply);
                     String reply_key = String.valueOf(replies.indexOf(reply));
                     reply.setKey(reply_key);

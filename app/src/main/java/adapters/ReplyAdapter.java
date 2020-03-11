@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zotreddit.R;
 import com.example.zotreddit.Reply;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
 public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ViewHolder> {
-
 
     Context context;
     List<Reply> replies;
@@ -51,6 +52,9 @@ public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ViewHolder> 
         TextView tvPost;
         TextView tvUpvotes;
         Button btnUpvote;
+        DatabaseReference databaseReference;
+        DatabaseReference databaseReference_message;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,17 +62,21 @@ public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ViewHolder> 
             tvPost = itemView.findViewById(R.id.tvPost);
             tvUpvotes = itemView.findViewById(R.id.tvUpvotes);
             btnUpvote = itemView.findViewById(R.id.btnUpvote);
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("message");
         }
 
         public void bind(final Reply reply) {
             tvUsername.setText(reply.getPoster());
             tvPost.setText(reply.getPost());
             tvUpvotes.setText(String.valueOf(reply.getUpvotes()));
+            databaseReference_message = databaseReference.child(reply.getParent_key()).child("replies");
 
             btnUpvote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    int newUpvotes = Integer.parseInt(tvUpvotes.getText().toString()) + 1;
+                    tvUpvotes.setText(String.valueOf(newUpvotes));
+                    databaseReference_message.child(reply.getKey()).child("upvotes").setValue(newUpvotes);
                 }
             });
         }
