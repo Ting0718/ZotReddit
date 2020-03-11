@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rlLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    tools:context=".MessageActivity">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <TextView
         android:id="@+id/tvUsername"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:text="username"
         android:textColor="#FF5722"
         android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Username" />
 
     <TextView
         android:id="@+id/tvPost"
@@ -31,7 +28,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="5dp"
-        android:text="Post"
+        android:text="Reply"
         android:textColor="#0B0A0A"
         android:textSize="22sp" />
 
@@ -44,6 +41,17 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="21dp"
         android:text="0"
-        android:textSize="20sp" />
+        android:textColor="#050505"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnUpvote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="47dp"
+        android:text="Upvote" />
 
 </RelativeLayout>

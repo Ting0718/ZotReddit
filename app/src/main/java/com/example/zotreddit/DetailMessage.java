@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,7 +23,6 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapters.MessageAdapter;
 import adapters.ReplyAdapter;
 
 public class DetailMessage extends AppCompatActivity {
@@ -35,7 +35,6 @@ public class DetailMessage extends AppCompatActivity {
     TextView tvReply;
     TextView tvReplier;
 
-    Message message;
     String message_key;
     List<Reply> replies;
 
@@ -43,7 +42,9 @@ public class DetailMessage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_detail_message);
         RecyclerView rvReply = findViewById(R.id.rvReply);
 
@@ -60,7 +61,7 @@ public class DetailMessage extends AppCompatActivity {
         String currentUser = getIntent().getStringExtra("currentUser");
         Message message = Parcels.unwrap(getIntent().getParcelableExtra("message"));
         message_key = message.getKey();
-        System.out.println(message_key);
+
         tvUsername.setText(message.getPoster());
         tvPost.setText(message.getPost());
         String upvotes = String.valueOf(message.getUpvotes());
@@ -87,8 +88,10 @@ public class DetailMessage extends AppCompatActivity {
 
                 if (!post.isEmpty())
                 {
-                    Reply reply = new Reply(replier, post, initial_upvote);
+                    Reply reply = new Reply(replier, post, initial_upvote, "0");
                     replies.add(reply);
+                    String reply_key = String.valueOf(replies.indexOf(reply));
+                    reply.setKey(reply_key);
                     databaseReference.child("replies").setValue(replies);
                     tvReply.setText("");
                 }

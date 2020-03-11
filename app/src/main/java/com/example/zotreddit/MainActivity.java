@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 String post = tvPost.getText().toString();
                 int initial_upvote = 0;
                 ArrayList<Reply> replies = new ArrayList<Reply>();
-                Reply reply = new Reply("Bot","You can upvote or reply to the post", 0);
+                Reply reply = new Reply("Bot","You can upvote or reply to the post", 0, "0");
                 replies.add(reply);
 
                 if (!post.isEmpty())
