@@ -1,6 +1,8 @@
 package adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zotreddit.DetailMessage;
 import com.example.zotreddit.Message;
 import com.example.zotreddit.R;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -60,10 +65,20 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             rlLayout = itemView.findViewById(R.id.rlLayout);
         }
 
-        public void bind(Message message) {
+        public void bind(final Message message) {
             tvUsername.setText(message.getPoster());
             tvPost.setText(message.getPost());
-            
+            tvUpvotes.setText(String.valueOf(message.getUpvotes()));
+
+            rlLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, DetailMessage.class);
+                    i.putExtra("message", Parcels.wrap(message));
+                    context.startActivity(i);
+                }
+            });
+
         }
 
 

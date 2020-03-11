@@ -92,14 +92,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = tvUsername.getText().toString();
                 String post = tvPost.getText().toString();
+                int initial_upvote = 0;
 
                 if (!post.isEmpty())
                 {
-                    Message message = new Message(post,username,0);
+                    String key = databaseReference.push().getKey();
+
+                    Message message = new Message(post,username,initial_upvote,key);
 
                     messages.add(message);
 
-                    String key = databaseReference.push().getKey();
                     databaseReference.child(key).setValue(message);
                 }
                 else

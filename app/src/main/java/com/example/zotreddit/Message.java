@@ -1,15 +1,24 @@
 package com.example.zotreddit;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Message {
 
     String post;
     String poster;
     int upvotes = 0;
+    String key;
 
-    public Message(String post, String poster, int upvotes) {
+    public Message(String post, String poster, int upvotes, String key) {
         this.post = post;
         this.poster = poster;
         this.upvotes = upvotes;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public String getPost() {
